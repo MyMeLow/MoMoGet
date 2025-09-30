@@ -23,6 +23,8 @@ _download_status = {}
 
 status_lock = threading.Lock()
 
+COOKIE_FILE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'youtube_cookies.txt')
+
 def delete_file_after_delay(filepath, delay_seconds):
     """
     指定された秒数後にファイルを削除する非同期処理。
@@ -112,6 +114,7 @@ def download():
     """動画のダウンロード処理を実行し、ダウンロードリンクを返す"""
     video_url = request.form.get('url')
     
+    a = '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'
     ydl_opts = {
         'format': 'best',
         'noplaylist': True,
@@ -120,13 +123,13 @@ def download():
         'quiet': True,
         'no_warnings': True,
         'cachedir': False,
-        'cookies' : 'cookies.txt',
-        'http_headers': {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36',
-            'Accept-Language': 'ja-JP,ja;q=0.9,en-US;q=0.8,en;q=0.7',
-        }
+        'cookie': a,
+        #'http_headers': {
+        #    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25',
+        #    'Accept-Language': 'ja-JP,ja;q=0.9,en-US;q=0.8,en;q=0.7',
+        #}
     }
-    
+
     try:
         app.logger.info(f"Attempting download metadata extraction for URL: {video_url}")
         
