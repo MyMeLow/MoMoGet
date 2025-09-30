@@ -120,6 +120,7 @@ def download():
         'quiet': True,
         'no_warnings': True,
         'cachedir': False,
+        'cookies' : 'youtube_cookies.txt',
         'http_headers': {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36',
             'Accept-Language': 'ja-JP,ja;q=0.9,en-US;q=0.8,en;q=0.7',
