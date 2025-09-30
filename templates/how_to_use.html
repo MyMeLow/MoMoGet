@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How To Use ~使い方~</title>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="{{ url_for('index') }}" class="logo">
+                <span class="text-momo-pink-light"></span> MoMoGet
+            </a>
+            
+            <nav id="nav-menu" class="nav-menu">
+                <a href="{{ url_for('index') }}" class="nav-item">Home</a>
+                <a href="{{ url_for('how_to_use') }}" class="nav-item active">How To Use</a>
+            </nav>
+
+            <button id="menu-toggle" class="menu-toggle" onclick="toggleMenu()">
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <h2>使い方ガイド</h2>
+            <p class="subtitle">動画ダウンロード方法。</p>
+            
+            <section class="use-section">
+                <h3>1. 動画URLの準備</h3>
+                <p>YouTubeやニコニコ動画などの動画ページを開いて、ブラウザのアドレスバーにあるURLを全てコピー</p>
+            </section>
+
+            <section class="use-section">
+                <h3>2. URLの入力</h3>
+                <p>Home (当サイトトップページ) に戻り、大きな入力フィールドにコピーしたURLを貼り付け。
+                貼り付けたら「GET!」ボタンをタップ!</p>
+            </section>
+
+            <section class="use-section">
+                <h3>3. 待機</h3>
+                <p>ボタンを押すと、動画の情報を解析し、ダウンロードする。この間は**画面が少し暗くなる**けど、フリーズじゃないからそのまま待って</p>
+                <p class="note">動画の長さやファイルサイズによっては、数秒〜数十秒かかることがあります。</p>
+            </section>
+
+            <section class="use-section">
+                <h3>4. ダウンロード完了!</h3>
+                <p>成功すると、**通知**が出て、ダウンロードリンクがポップアップで表示されるわ。リンクをタップすれば、動画がダウンロードされます。</p>
+            </section>
+
+            <section class="use-section">
+                <h3>！注意！</h3>
+                <p>動画のダウンロードリンクは、10分で失効します。</p>
+            </section>
+        </div>
+    </div>
+    
+    <div class="silhouette-momo">
+        <img src="{{ url_for('static', filename='momo_sh.png') }}" alt="モモ・ベリア・デビルークのシルエット" onerror="this.onerror=null;this.src='{{ url_for('static', filename='momo_sh.png') }}';" />
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

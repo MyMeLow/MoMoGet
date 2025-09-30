@@ -1,0 +1,520 @@
+/* --- SCSS Variables & Utility Classes --- */
+:root {
+    /* ソフトピンク基調 */
+    --momo-pink-light: #FFC0CB; /* ベビーピンク */
+    --momo-pink-medium: #FF69B4; /* ホットピンクに近いコーラル */
+    --momo-purple-dark: #800080; /* 濃い紫 */
+    --momo-gold-accent: #FFD700; /* ゴールド */
+    --momo-bg-pattern-color: rgba(255, 255, 255, 0.5); /* パターン色 */
+}
+
+/* ヘルパークラス */
+.text-momo-pink-light { color: var(--momo-pink-light); }
+.text-momo-purple-dark { color: var(--momo-purple-dark); }
+.hidden { display: none !important; }
+
+/* --- Base Styles & Background Pattern --- */
+body {
+    /* 淡いピンク単色 */
+    background-color: var(--momo-pink-light); 
+    color: var(--momo-purple-dark); /* 濃い紫 */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* 可愛らしいフォント */
+    padding: 0;
+    min-height: 100vh;
+    box-sizing: border-box;
+    margin: 0;
+    overflow-x: hidden; /* 横スクロール禁止 */
+    position: relative;
+    
+    /* 😈 背景パターン (ハートと花をイメージしたテクスチャ) */
+    background-image: 
+        radial-gradient(circle at 10% 20%, var(--momo-bg-pattern-color) 2px, transparent 0),
+        radial-gradient(circle at 90% 80%, var(--momo-bg-pattern-color) 1.5px, transparent 0);
+    background-size: 40px 40px;
+}
+
+/* --- Header & Navigation --- */
+header {
+    background-color: rgba(255, 255, 255, 0.85); /* 半透明の白 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky; /* スクロールしても固定 */
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--momo-purple-dark);
+    text-decoration: none;
+    /* ★ 影を完全に削除 */
+    text-shadow: none; 
+}
+
+.nav-menu {
+    display: flex;
+    gap: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-item {
+    color: var(--momo-purple-dark);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-item:hover, .nav-item.active {
+    background-color: var(--momo-pink-medium);
+    color: white;
+}
+.nav-item.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* --- ハンバーガーメニューボタン --- */
+.menu-toggle {
+    display: none; /* PCでは非表示 */
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 150;
+    
+    /* 🎀 ピンクの丸ボタン */
+    background-color: var(--momo-pink-medium);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    box-shadow: 2px 2px 0 var(--momo-purple-dark);
+    transition: all 0.2s ease;
+}
+
+.menu-toggle:hover {
+    box-shadow: 4px 4px 0 var(--momo-purple-dark);
+    transform: translate(-1px, -1px);
+}
+
+.hamburger-icon-container {
+    width: 25px;
+    height: 20px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    transition: 0.4s;
+    border-radius: 2px;
+}
+
+/* メニューオープン時のアニメーション */
+.menu-toggle.open .bar1 {
+    transform: translate(0, 7px) rotate(-45deg);
+}
+
+.menu-toggle.open .bar2 {opacity: 0;}
+
+.menu-toggle.open .bar3 {
+    transform: translate(0, -7px) rotate(45deg);
+}
+
+
+/* --- Main Container & Typography --- */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    /* 😈 コンテナを半透明のまま維持 (シルエット透過のため) */
+    background-color: rgba(255, 255, 255, 0.5); 
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2; /* シルエットより手前に */
+    min-height: 70vh;
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 3;
+}
+
+h1 {
+    /* ★ H1の文字色を濃い紫にする (ピンク背景に対して最も視認性が高い色) */
+    color: var(--momo-purple-dark); 
+    /* ★ 影を完全に削除 */
+    text-shadow: none;
+    text-align: center;
+    font-size: 3.5em;
+    margin-bottom: 5px;
+    line-height: 1.1;
+    font-weight: 900; /* 太字にして存在感を出す */
+}
+h2 {
+    color: var(--momo-purple-dark);
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    border-bottom: 3px dashed var(--momo-pink-medium);
+    padding-bottom: 5px;
+    display: inline-block;
+    width: auto;
+}
+.subtitle {
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: var(--momo-purple-dark);
+}
+
+/* --- 動画プレイヤーコンテナのスタイル追加 --- */
+.video-player-container {
+    width: 100%;
+    /* 動画の16:9比率を維持するためのハック (必要に応じて調整) */
+    position: relative;
+    padding-top: 56.25%; /* 9 / 16 * 100% */
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.download-video-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+}
+/* -------------------------------------- */
+
+/* --- Silhouette (固定配置/レスポンシブ対応) --- */
+.silhouette-momo {
+    position: fixed; /* 全画面に固定 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* ★ 画面幅いっぱいに広げて中央固定を確実にする */
+    width: 100%; 
+    max-width: 500px; 
+    height: auto; 
+    z-index: 1; /* コンテンツ (z-index: 2) の下に配置 */
+    opacity: 0.40; /* 透過度を維持 */
+    pointer-events: none;
+    filter: drop-shadow(0 0 10px rgba(128, 0, 128, 0.3)); /* 影を維持して、薄い色でも輪郭を出す */
+}
+
+.silhouette-momo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* --- Form and Input --- */
+.input-form {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.7); /* フォーム自体は少し透過度を上げる */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    max-width: 500px;
+    padding: 12px 20px;
+    border-radius: 30px; /* 丸みを強く */
+    border: 3px solid var(--momo-pink-medium);
+    font-size: 17px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s;
+    background-color: rgba(255, 255, 255, 0.8); /* 入力フィールドも少し透過 */
+}
+
+input[type="text"]:focus {
+    border-color: var(--momo-purple-dark);
+    outline: none;
+}
+
+button {
+    padding: 12px 25px;
+    border-radius: 30px;
+    background-color: var(--momo-pink-medium);
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    box-shadow: 4px 4px 0 var(--momo-purple-dark); /* 立体的な影 */
+    transition: all 0.2s ease;
+    font-size: 17px;
+    min-width: 120px;
+}
+
+button:hover {
+    background-color: #ff3399; 
+    transform: translate(-2px, -2px); /* 浮き上がるアニメーション */
+    box-shadow: 6px 6px 0 var(--momo-purple-dark);
+}
+
+button:active, button[disabled] {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 var(--momo-purple-dark);
+}
+button[disabled] {
+    cursor: not-allowed;
+    background-color: #ccc;
+}
+
+/* --- Result Area --- */
+.result-area {
+    margin-top: 30px;
+    padding: 20px;
+    border-top: 2px dashed var(--momo-pink-medium);
+}
+
+.result-box {
+    background-color: rgba(255, 255, 255, 0.6); /* 透過させてシルエットが見えるように */
+    border: 1px solid var(--momo-pink-light);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.download-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: var(--momo-purple-dark);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: background-color 0.2s;
+}
+
+.download-link:hover {
+    background-color: #5d005d;
+}
+
+.status-success {
+    color: green;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.status-error {
+    color: red;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* --- How To Use Section --- */
+.use-section {
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    border-left: 5px solid var(--momo-pink-medium);
+}
+
+.use-section h3 {
+    color: var(--momo-purple-dark);
+    margin-top: 0;
+    font-size: 1.4em;
+}
+.use-section p {
+    line-height: 1.6;
+}
+
+.note {
+    color: var(--momo-pink-medium);
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* --- Sparkle Effect (JSで追加される要素) --- */
+@keyframes sparkle-anim {
+    0% { transform: scale(0.5) rotate(0deg); opacity: 1; }
+    100% { transform: scale(1.5) rotate(360deg) translateY(-30px); opacity: 0; }
+}
+
+.sparkle-effect {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--momo-gold-accent); /* ゴールド */
+    /* 可愛い星形 */
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); 
+    animation: sparkle-anim 0.8s ease-out forwards;
+    pointer-events: none;
+    z-index: 200;
+}
+
+/* --- SweetAlert2 Custom Styling --- */
+.momo-toast {
+    background-color: var(--momo-pink-light) !important;
+    color: var(--momo-purple-dark) !important;
+    border: 2px solid var(--momo-pink-medium) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    font-family: 'Comic Sans MS', cursive, sans-serif !important;
+}
+
+/* --- ローディングオーバーレイ --- */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* 少し透けた白 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 300;
+    transition: opacity 0.3s;
+}
+
+.spinner-content {
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.progress-bar-bg {
+    width: 250px;
+    height: 10px;
+    background-color: #eee;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px auto;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--momo-pink-medium);
+    transition: width 0.1s linear;
+}
+
+.loader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--momo-pink-light);
+    border-top-color: var(--momo-pink-medium);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+
+/* --- レスポンシブ対応 --- */
+@media (max-width: 768px) {
+    /* ヘッダーの調整 */
+    .header-content {
+        padding: 10px 15px;
+    }
+    .logo {
+        font-size: 1.5em;
+        text-shadow: none; 
+    }
+    /* H1の影をモバイルでも完全に削除 */
+    h1 {
+        text-shadow: none;
+    }
+
+    /* ハンバーガーメニューの表示 */
+    .menu-toggle {
+        display: block;
+    }
+    
+    /* ナビゲーションを非表示にし、モバイル用に調整 */
+    .nav-menu {
+        position: absolute;
+        top: 60px; /* ヘッダーの高さに合わせて調整 */
+        right: 0;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.95);
+        border: 1px solid var(--momo-pink-light);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 10px 10px;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+    }
+
+    .nav-menu.open {
+        max-height: 250px; /* 開いた時の高さ */
+    }
+
+    .nav-item {
+        padding: 10px 20px;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
+
+    /* メインコンテンツの調整 */
+    .container {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 2.5em;
+    }
+    .subtitle {
+        margin-bottom: 20px;
+    }
+    
+    /* フォームのスタック */
+    .input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    input[type="text"] {
+        max-width: 100%;
+        font-size: 16px;
+    }
+    button {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    /* シルエットを大きく */
+    .silhouette-momo {
+        width: 100%;
+        max-width: 400px;
+        /* PCと同じ透過度に戻す */
+        opacity: 0.40; 
+    }
+}

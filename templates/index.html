@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoMoGet ~動画ゲッター~</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+</head>
+<body>
+
+
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="spinner-content">
+
+            <div id="progress-container" class="progress-container hidden">
+                <p id="progress-message" class="text-momo-purple-dark text-lg font-bold mb-2">ダウンロード中...</p>
+                <div class="progress-bar-bg">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+                <p id="progress-detail" class="text-sm mt-2"></p>
+            </div>
+
+            <p id="initial-loading-message" class="mt-4 text-momo-purple-dark text-lg font-bold">動画情報を解析中...</p>
+            <div id="loader-spinner" class="loader-spinner"></div>
+        </div>
+    </div>
+    
+
+    <header>
+        <div class="header-content">
+            <a href="{{ url_for('index') }}" class="logo">
+                <span class="text-momo-pink-light"></span> MoMoGet
+            </a>
+            
+            <nav id="nav-menu" class="nav-menu">
+                <a href="{{ url_for('index') }}" class="nav-item active">Home</a>
+                <a href="{{ url_for('how_to_use') }}" class="nav-item">How To Use</a>
+            </nav>
+
+            <button id="menu-toggle" class="menu-toggle" onclick="toggleMenu()">
+                <div class="hamburger-icon-container">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </button>
+        </div>
+    </header>
+
+
+    <div class="container">
+        
+        <div class="content-wrapper">
+            <h1>MoMoGet — 動画をゲット</h1>
+            <p class="subtitle">好きな動画のURLを入力してね。最高品質でMP4にしてあげる</p>
+
+            <form id="download-form" class="input-form">
+                <div class="input-group">
+                    <input type="text" id="video-url" name="url" placeholder="YouTube, Niconico などの動画URLをここにペースト" required>
+                    <button type="submit">
+                        <span id="button-text">GET!</span>
+                    </button>
+                </div>
+            </form>
+
+
+            <div id="result-area" class="result-area hidden">
+                <div class="result-box">
+                    
+                    <div id="video-player-container" class="video-player-container">
+                    </div>
+                    
+                    <p id="result-title" class="text-lg font-bold mt-4"></p>
+                    <p id="result-filesize" class="text-sm mb-4"></p>
+                    <p id="result-status" class="status-success"></p>
+                    
+                    <a id="result-link" class="download-link" href="#" target="_blank"></a>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+
+    <div class="silhouette-momo">
+        <img src="{{ url_for('static', filename='momo_sh.png') }}" alt="モモ・ベリア・デビルークのシルエット">
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
